@@ -1,0 +1,17 @@
+<input type="text" [(ngModel)]="mealName" (ngModelChange)="reloadMeals($event)">
+<h1>Food ({{mealName.toUpperCase()}})</h1>
+<main *ngFor="let item of mealsArray; index as i">
+  <div class="foodImageContainer">
+    <h2>{{item.strMeal}}</h2>
+    <img class="foodImage" [src]="item.strMealThumb">
+  </div>
+
+  <div class="foodIngredient">
+    <p><b>Ingredients</b></p>
+    <ul *ngFor="let ingredients of ingredientsArray.at(i)">
+      <li>{{ingredients}}</li>
+    </ul>
+  </div>
+</main>
+
+
