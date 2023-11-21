@@ -1,0 +1,45 @@
+.letterListContainer{
+  margin-top: 1rem;
+}
+
+h1{
+  margin: 1rem;
+  color: white;
+}
+main{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .foodCard{
+    margin: 2rem;
+    padding: 1rem;
+    background: #b60000;
+    border-radius: 10px;
+    color: white;
+    .foodImageContainer{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+      h2{
+        margin-bottom: 1rem;
+      }
+      .foodImage{
+        width: 20rem;
+        border-radius: 10px;
+      }
+    }
+    .foodIngredient{
+      .ingTitle{
+        margin: 0.5rem;
+      }
+      ul{
+        li{
+          //list-style: none;
+          margin-left: 2rem;
+        }
+      }
+    }
+  }
+}
+

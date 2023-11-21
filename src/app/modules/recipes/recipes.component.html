@@ -1,16 +1,32 @@
-<input type="text" [(ngModel)]="mealName" (ngModelChange)="reloadMeals($event)">
-<h1>Food ({{mealName.toUpperCase()}})</h1>
-<main *ngFor="let item of mealsArray; index as i">
-  <div class="foodImageContainer">
-    <h2>{{item.strMeal}}</h2>
-    <img class="foodImage" [src]="item.strMealThumb">
+<p>Search the list of meals</p>
+<div class="letterListContainer">
+  <div style="display: inline;
+            border-radius: 10px;
+            margin: 0.5rem;
+            padding: 0.4rem;
+            cursor: pointer;
+            background: red;
+            color:yellow"
+       *ngFor="let letter of letterList" (click)="log($event)">
+    <a>{{letter}}</a>
   </div>
-
-  <div class="foodIngredient">
-    <p><b>Ingredients</b></p>
-    <ul *ngFor="let ingredients of ingredientsArray.at(i)">
-      <li>{{ingredients.name}}: {{ingredient.measure}}</li>
-    </ul>
+</div>
+<h1>Meals ({{mealName.toUpperCase()}})</h1>
+<main style="display: flex">
+  <div class="foodCard" [routerLink]="['/recipe-page', item.idMeal]" *ngFor="let item of mealsArray; index as i">
+    <div class="foodImageContainer">
+      <h2 *ngIf="titleIfLengthAbove(item.strMeal) else minorFontSize">{{item.strMeal}}</h2>
+      <ng-template #minorFontSize >
+        <h2 style="font-size: 12px">{{item.strMeal}}</h2>
+      </ng-template>
+      <img class="foodImage" [src]="item.strMealThumb">
+    </div>
+    <div class="foodIngredient">
+      <p class="ingTitle"><b>Ingredients</b></p>
+      <ul>
+        <li *ngFor="let ingredients of ingredientsArray.at(i)">{{ingredients}}</li>
+      </ul>
+    </div>
   </div>
 </main>
 

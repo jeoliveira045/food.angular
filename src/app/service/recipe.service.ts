@@ -14,4 +14,8 @@ export class RecipeService {
     return this.httpClient.get(`${this.URL_API}?f=${firstLetter}`)
   }
 
+  public findById(id: number){
+    this.httpClient.get(`${this.URL_API}?id=${id}`)
+  }
+
 }
