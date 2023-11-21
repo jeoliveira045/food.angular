@@ -7,6 +7,11 @@ class list{
   meals: Array<any> = new Array<any>();
 }
 
+class Ingredients{
+  name?: string
+  measure?: string;
+}
+
 
 @Component({
   selector: 'app-recipes',
@@ -17,9 +22,10 @@ export class RecipesComponent implements OnInit{
 
   public mealsArray: Array<any> = new Array<any>();
 
-  public ingredientsArray: Array<Array<{ingredients: string, measurements: string}>> = new Array<any>();
+  public ingredientsArray: Array<Array<Ingredients>> = new Array<any>();
 
-  public ingAndMeasure: {ingredients: string, measurements: string}
+
+  ingredient: Ingredients = new Ingredients();
 
   mealName: string = "a";
 
@@ -30,39 +36,42 @@ export class RecipesComponent implements OnInit{
   reloadMeals(e: any){
     this.mealsArray = new Array<any>();
     this.ingredientsArray = new Array<any>();
-    if(this.mealName == null || this.mealName == ''){
+    this.ingredient = new Ingredients()
+    if(!this.mealName){
       this.recipeService.search('a').subscribe((res: any) => {
         for(let i of res.meals){
           this.mealsArray.push(i)
           const map =new Map(Object.entries(i))
-          var IngArray = new Array<any>()
+          var array = new Array<Ingredients>()
           for(let j of map.entries()){
-            if(j[0].includes("Ingredient")){
-              if(j[1]){
-                this.ingAndMeasure.ingredients = j[1].toString()
-              }
-            if(j[0].includes("Measure")){
-              if(j[1]){
-                this.ingAndMeasure.measurements = j[1].toString()
-              }
-            }
+            if(j[0].includes("Ingredient") && j[1]){
+              this.ingredient.name = j[1].toString()
+              array.push(this.ingredient)
             }
           }
-          this.ingredientsArray.push(IngArray)
+          for(let j of map.entries()){
+            for( let i = 0;i < array.length; i++){
+              array[i].measure = j[1].toString()
+            }
+          }
+          this.ingredientsArray.push(array)
         }
       })
     }else{
-
       this.recipeService.search(this.mealName).subscribe((res: any) => {
         for(let i of res.meals){
           this.mealsArray.push(i)
           const map =new Map(Object.entries(i))
-          var array = new Array<any>()
+          var array = new Array<Ingredients>()
           for(let j of map.entries()){
-            if(j[0].includes("Ingredient")){
-              if(j[1]){
-                array.push(j[1])
-              }
+            if(j[0].includes("Ingredient") && j[1]){
+              this.ingredient.name = j[1].toString()
+              array.push(this.ingredient)
+            }
+          }
+          for(let j of map.entries()){
+            for( let i = 0;i < array.length; i++){
+              array[i].measure = j[1].toString()
             }
           }
           this.ingredientsArray.push(array)
@@ -76,12 +85,16 @@ export class RecipesComponent implements OnInit{
       for(let i of res.meals){
         this.mealsArray.push(i)
         const map =new Map(Object.entries(i))
-        var array = new Array<any>()
+        var array = new Array<Ingredients>()
         for(let j of map.entries()){
-          if(j[0].includes("Ingredient")){
-            if(j[1]){
-              array.push(j[1])
-            }
+          if(j[0].includes("Ingredient") && j[1]){
+            this.ingredient.name = j[1].toString()
+            array.push(this.ingredient)
+          }
+        }
+        for(let j of map.entries()){
+          for( let i = 0;i < array.length; i++){
+            array[i].measure = j[1].toString()
           }
         }
         this.ingredientsArray.push(array)
