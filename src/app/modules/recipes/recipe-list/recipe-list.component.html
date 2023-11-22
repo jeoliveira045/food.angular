@@ -1,0 +1,16 @@
+<div class="letterListContainer">
+  <div *ngFor="let letter of letterList" (click)="log($event)">
+    <a>{{letter}}</a>
+  </div>
+</div>
+<h1>Meals ({{mealName.toUpperCase()}})</h1>
+<main style="display: flex">
+  <div class="foodCard" [routerLink]="['/recipe/recipe-page', item.idMeal]" *ngFor="let item of mealsArray; index as i">
+    <div class="foodImageContainer">
+      <h2>{{item.strMeal}}</h2>
+      <img class="foodImage" [src]="item.strMealThumb">
+    </div>
+  </div>
+</main>
+
+

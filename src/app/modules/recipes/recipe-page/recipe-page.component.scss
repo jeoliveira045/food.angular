@@ -1,0 +1,62 @@
+.foodInformation{
+  display: flex;
+  justify-content: center;
+  color: white;
+  .imageCard{
+    width: 40%;
+    margin: 60px;
+    background: #b60000;
+    padding: 3rem;
+    border-radius: 1rem;
+    h1 {
+      text-align: center;
+      margin: 10px
+    }
+    main {
+
+      h2 {
+        text-align: center;
+        margin: 10px
+      }
+
+      .imageContainer {
+        display: flex;
+        justify-content: center;
+        .imageClass {
+          border-radius: 10px;
+        }
+      }
+
+      .ingredientsContainer {
+        margin-bottom: 1rem;
+        .ingredientsAndMeasures {
+          .ingredients {
+            p {
+              text-align: center;
+            }
+            ul {
+              li {
+                text-align: center;
+                list-style: none;
+              }
+            }
+          }
+        }
+      }
+      .instructionsContainer{
+        p{
+          text-align: center;
+        }
+        .instructions{
+          display: flex;
+          justify-content: center;
+          //text-align: center;
+          p{
+            width: 60%;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

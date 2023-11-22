@@ -1,0 +1,60 @@
+.letterListContainer{
+  margin-top: 1rem;
+  div{
+    display: inline;
+    border-radius: 10px;
+    margin: 0.5rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    background: red;
+    color: #ffffff;
+    font-family: Roboto, sans-serif, "Roboto Light", "Roboto Thin";
+    a{
+      font-weight: bold;
+    }
+  }
+}
+
+h1{
+  margin: 1rem;
+  color: white;
+}
+main{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .foodCard{
+    margin: 2rem;
+    padding: 1rem;
+    background: #b60000;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    width: 20%;
+    .foodImageContainer{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+      h2{
+        margin-bottom: 1rem;
+      }
+      .foodImage{
+        width: 20rem;
+        border-radius: 10px;
+      }
+    }
+    .foodIngredient{
+      .ingTitle{
+        margin: 0.5rem;
+      }
+      ul{
+        li{
+          //list-style: none;
+          margin-left: 2rem;
+        }
+      }
+    }
+  }
+}
+

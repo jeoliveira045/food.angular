@@ -6,12 +6,14 @@ import { RecipesComponent } from './recipes.component';
 import {RecipeService} from "../../service/recipe.service";
 import {FormsModule} from "@angular/forms";
 import { RecipePageComponent } from './recipe-page/recipe-page.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
 
 
 @NgModule({
   declarations: [
     RecipesComponent,
-    RecipePageComponent
+    RecipePageComponent,
+    RecipeListComponent
   ],
   imports: [
     CommonModule,

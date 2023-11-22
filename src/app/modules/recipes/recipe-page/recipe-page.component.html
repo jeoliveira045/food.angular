@@ -1,1 +1,29 @@
-<p>recipe-page works!</p>
+<div class="foodInformation">
+<div class="imageCard">
+  <h1>{{meal.name}}</h1>
+  <main>
+    <div class="imageContainer">
+      <img class="imageClass" [src]="meal.image">
+    </div>
+    <h2>Details: </h2>
+
+    <div class="ingredientsContainer">
+      <div class="ingredientsAndMeasures">
+        <div class="ingredients">
+          <p><b>Ingredients: </b></p>
+          <ul>
+            <li class="" *ngFor="let item of mealMap | keyvalue">{{item.key}}: {{item.value}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="instructionsContainer">
+      <p><b>Cooking {{meal.name}}</b></p>
+      <div class="instructions">
+        <p>{{meal.instructions}}</p>
+      </div>
+    </div>
+    <button routerLink="/recipe/recipe-list">Back to Recipe list</button>
+  </main>
+</div>
+</div>
