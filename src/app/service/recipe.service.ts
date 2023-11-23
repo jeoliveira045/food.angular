@@ -11,12 +11,16 @@ export class RecipeService {
 
   constructor(protected httpClient: HttpClient) { }
 
-  public search(firstLetter: string):Observable<any>{
+  public searchByLetter(firstLetter: string):Observable<any>{
     return this.httpClient.get(`${this.URL_API}search.php?f=${firstLetter}`)
   }
 
   public findById(id: number){
     return this.httpClient.get(`${this.URL_API}lookup.php?i=${id}`)
+  }
+
+  public search(word: string): Observable<any>{
+    return this.httpClient.get(`${this.URL_API}search.php?s=${word}`)
   }
 
 }

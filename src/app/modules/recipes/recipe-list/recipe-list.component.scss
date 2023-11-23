@@ -14,6 +14,19 @@
     }
   }
 }
+.searchMeal{
+  margin-top: 30px;
+  text-align: center;
+  input{
+    width: 40%;
+    height: 2rem;
+    border-style: none;
+    border-radius:  10px;
+  }
+  ::placeholder{
+    text-align: center;
+  }
+}
 
 h1{
   margin: 1rem;

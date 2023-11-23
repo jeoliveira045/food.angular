@@ -23,6 +23,7 @@ export class RecipesComponent implements OnInit{
 
   public mealsArray: Array<any> = new Array<any>();
   public ingredientsArray: Array<Array<any>> = new Array<any>();
+
   mealName: string = "a";
 
   constructor(protected recipeService: RecipeService, private sanitizer: DomSanitizer, private renderer:Renderer2, protected elementRef: ElementRef){
@@ -50,7 +51,7 @@ export class RecipesComponent implements OnInit{
 
   loadMeals(){
     if(!this.mealName){
-      this.recipeService.search('a').subscribe((res: any) => {
+      this.recipeService.searchByLetter('a').subscribe((res: any) => {
         for(let i of res.meals){
           this.mealsArray.push(i)
           const map =new Map(Object.entries(i))
@@ -64,7 +65,7 @@ export class RecipesComponent implements OnInit{
         }
       })
     }else{
-      this.recipeService.search(this.mealName).subscribe((res: any) => {
+      this.recipeService.searchByLetter(this.mealName).subscribe((res: any) => {
         for(let i of res.meals){
           this.mealsArray.push(i)
           const map =new Map(Object.entries(i))
@@ -79,6 +80,7 @@ export class RecipesComponent implements OnInit{
       })
     }
   }
+
 
 
 

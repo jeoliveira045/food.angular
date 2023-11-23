@@ -1,11 +1,17 @@
 <div class="letterListContainer">
-  <div *ngFor="let letter of letterList" (click)="log($event)">
+  <div *ngFor="let letter of letterList" (click)="reloadMeals($event)">
     <a>{{letter}}</a>
   </div>
 </div>
-<h1>Meals ({{mealName.toUpperCase()}})</h1>
+<div class="searchMeal">
+  <input [(ngModel)]="mealSearchWord" placeholder="Search your favorite meal!"  (ngModelChange)="search($event)">
+</div>
+<h1 *ngIf="searchWordIsEmpty() else useMealInitial">Searching for ({{mealSearchWord}})</h1>
+<ng-template #useMealInitial>
+  <h1>Meals ({{mealName.toUpperCase()}})</h1>
+</ng-template>
 <main style="display: flex">
-  <div class="foodCard" [routerLink]="['/recipe/recipe-page', item.idMeal]" *ngFor="let item of mealsArray; index as i">
+  <div class="foodCard" [routerLink]="['/recipe/recipe-page',item.idMeal]" *ngFor="let item of mealsArray; index as i">
     <div class="foodImageContainer">
       <h2>{{item.strMeal}}</h2>
       <img class="foodImage" [src]="item.strMealThumb">

@@ -24,6 +24,7 @@ export class RecipeListComponent implements OnInit{
   public mealsArray: Array<any> = new Array<any>();
   public ingredientsArray: Array<Array<any>> = new Array<any>();
   mealName: string = "a";
+  mealSearchWord: string = "";
 
   constructor(protected recipeService: RecipeService, private sanitizer: DomSanitizer, private renderer:Renderer2, protected elementRef: ElementRef){
   }
@@ -34,51 +35,55 @@ export class RecipeListComponent implements OnInit{
   }
 
   titleIfLengthAbove(title: string) {
-    if (title.length < 30) {
+    if(title.length < 30) {
       return true
     }
     return false
   }
 
 
-  log(e: any){
+  reloadMeals(e: any){
     this.mealsArray = new Array<any>();
-    this.ingredientsArray = new Array<any>();
     this.mealName = e.target.textContent;
     this.loadMeals();
   }
 
   loadMeals(){
     if(!this.mealName){
-      this.recipeService.search('a').subscribe((res: any) => {
+      this.recipeService.searchByLetter('a').subscribe((res: any) => {
         for(let i of res.meals){
           this.mealsArray.push(i)
-          const map =new Map(Object.entries(i))
-          var array = new Array<any>()
-          for(let j of map.entries()){
-            if(j[0].includes("Ingredient") && j[1]){
-              array.push(j[1].toString())
-            }
-          }
-          this.ingredientsArray.push(array)
         }
       })
     }else{
-      this.recipeService.search(this.mealName).subscribe((res: any) => {
+      this.recipeService.searchByLetter(this.mealName).subscribe((res: any) => {
         for(let i of res.meals){
           this.mealsArray.push(i)
-          const map =new Map(Object.entries(i))
-          var array = new Array<any>()
-          for(let j of map.entries()){
-            if(j[0].includes("Ingredient") && j[1]){
-              array.push(j[1].toString())
-            }
-          }
-          this.ingredientsArray.push(array)
         }
       })
     }
   }
+
+  search(e: any){
+    this.mealsArray = new Array<any>();
+    if(this.mealSearchWord){
+      this.recipeService.search(this.mealSearchWord).subscribe((res: any) => {
+        for(let i of res.meals){
+          this.mealsArray.push(i)
+        }
+      })
+    }else{
+      this.loadMeals();
+    }
+  }
+
+  searchWordIsEmpty(){
+    if(this.mealSearchWord){
+      return true
+    }
+    return false;
+  }
+
 
 
 
