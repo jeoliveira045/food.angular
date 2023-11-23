@@ -37,7 +37,7 @@ main{
   flex-wrap: wrap;
   justify-content: center;
   .foodCard{
-    margin: 2rem;
+    margin: 1rem;
     padding: 1rem;
     background: #b60000;
     border-radius: 10px;
@@ -68,6 +68,16 @@ main{
         }
       }
     }
+    &:hover{
+      background-color: #ff0000;
+      padding: 2rem;
+    }
+    &:active{
+      padding: 0.5rem;
+    }
+
   }
+
+
 }
 

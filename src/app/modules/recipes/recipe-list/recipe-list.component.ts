@@ -65,16 +65,19 @@ export class RecipeListComponent implements OnInit{
   }
 
   search(e: any){
-    this.mealsArray = new Array<any>();
-    if(this.mealSearchWord){
-      this.recipeService.search(this.mealSearchWord).subscribe((res: any) => {
-        for(let i of res.meals){
-          this.mealsArray.push(i)
-        }
-      })
-    }else{
-      this.loadMeals();
-    }
+    setTimeout(() => {
+      this.mealsArray = new Array<any>();
+      if(this.mealSearchWord){
+        this.recipeService.search(this.mealSearchWord).subscribe((res: any) => {
+          for(let i of res.meals){
+            this.mealsArray.push(i)
+          }
+        })
+      }else{
+        this.loadMeals();
+      }
+    }, 2000)
+
   }
 
   searchWordIsEmpty(){
